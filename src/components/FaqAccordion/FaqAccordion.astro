@@ -35,27 +35,42 @@ const faqList = document.getElementById('faq-list');
   const itemsPerLoad = 10; 
 
   const renderItems = (items) => {
-    const fragment = document.createDocumentFragment(); 
+    const fragment = document.createDocumentFragment();
     items.forEach((itemData, indexInBatch) => {
-      const globalIndex = loadedCount + indexInBatch; 
+      const globalIndex = loadedCount + indexInBatch;
+
 
       const listItem = document.createElement('li');
       listItem.classList.add('faq-item');
-      listItem.dataset.index = globalIndex.toString(); 
+      listItem.dataset.index = globalIndex.toString();
 
 
       const questionButton = document.createElement('button');
       questionButton.classList.add('faq-question');
-      questionButton.textContent = itemData.question;
 
+
+
+      const questionText = document.createElement('span');
+      questionText.classList.add('question-text');
+      questionText.textContent = itemData.question;
+
+
+      const iconSpan = document.createElement('span');
+      iconSpan.classList.add('faq-icon'); 
+
+      questionButton.appendChild(questionText); 
+      questionButton.appendChild(iconSpan);    
+
+
+  
       const answerParagraph = document.createElement('p');
       answerParagraph.classList.add('faq-answer');
-      answerParagraph.textContent = itemData.answer;
-
+      answerParagraph.textContent = itemData.answer; 
 
       listItem.appendChild(questionButton);
       listItem.appendChild(answerParagraph);
 
+   
       fragment.appendChild(listItem);
     });
 
@@ -109,7 +124,6 @@ const faqList = document.getElementById('faq-list');
   };
 
 
-  // === Initialization ===
   if (loadMoreBtn) {
     loadMoreBtn.addEventListener('click', loadMoreItems);
   }
