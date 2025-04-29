@@ -1,35 +1,127 @@
 ---
-import faq from '../../data/faq.json'; 
+import faqData from '../../data/faq.json';
 import './FaqAccordion.scss';
+const totalItems = faqData.length;
 ---
 
-<div class="faq-accordion">
-  {faq.map((item, index) => (
-    <li class="faq-item" data-index={index}>
-      <button class="faq-question">
-        {item.question}
-      </button>
-      <p class="faq-answer">
-        {item.answer}
-      </p>
+<div class="faq-container">
+  <ul class="faq-accordion" id="faq-list">
+    </ul>
 
-    </li>
-  ))}
+    <section class="load-section">
+      <div class="progress-display"> <div class="progress-bubble" id="load-progress-bubble">
+          <span>0 / {totalItems}</span>
+        </div>
+        <div class="progress-bar-container">
+          <div class="progress-bar-fill" id="progress-bar-fill" style="width: 0%;"></div>
+        </div>
+      </div>
+      <button class="load-btn" id="load-more-btn" style={totalItems <= 10 ? 'display: none;' : ''}>
+        Wczytaj więcej 
+      </button>
+    </section>
 </div>
 
-<script type="module">
-  const faqItems = document.querySelectorAll('.faq-item');
+<script define:vars={{ faqData, totalItems }}>
 
-  faqItems.forEach(item => {
-    const question = item.querySelector('.faq-question');
-    const answer = item.querySelector('.faq-answer');
+const faqList = document.getElementById('faq-list');
+  const loadMoreBtn = document.getElementById('load-more-btn');
 
-    question.addEventListener('click', () => {
-      const isOpen = item.classList.contains('open');
-      faqItems.forEach(i => i.classList.remove('open')); 
-      if (!isOpen) {
-        item.classList.add('open');
-      }
+  const progressBubbleSpan = document.querySelector('#load-progress-bubble span'); 
+  const progressBarFill = document.getElementById('progress-bar-fill');    
+
+
+  let loadedCount = 0;
+  const itemsPerLoad = 10; 
+
+  const renderItems = (items) => {
+    const fragment = document.createDocumentFragment(); 
+    items.forEach((itemData, indexInBatch) => {
+      const globalIndex = loadedCount + indexInBatch; 
+
+      const listItem = document.createElement('li');
+      listItem.classList.add('faq-item');
+      listItem.dataset.index = globalIndex.toString(); 
+
+
+      const questionButton = document.createElement('button');
+      questionButton.classList.add('faq-question');
+      questionButton.textContent = itemData.question;
+
+      const answerParagraph = document.createElement('p');
+      answerParagraph.classList.add('faq-answer');
+      answerParagraph.textContent = itemData.answer;
+
+
+      listItem.appendChild(questionButton);
+      listItem.appendChild(answerParagraph);
+
+      fragment.appendChild(listItem);
     });
-  });
+
+  
+    faqList.appendChild(fragment);
+  };
+  const updateProgress = () => {
+
+    if (progressBubbleSpan) {
+      progressBubbleSpan.textContent = `${loadedCount} / ${totalItems}`;
+    }
+
+    if (progressBarFill) {
+      const percentage = totalItems > 0 ? (loadedCount / totalItems) * 100 : 0;
+      progressBarFill.style.width = `${percentage}%`;
+    }
+  };
+
+  const loadMoreItems = () => {
+
+    const itemsToLoad = faqData.slice(loadedCount, loadedCount + itemsPerLoad);
+
+    if (itemsToLoad.length > 0) {
+      renderItems(itemsToLoad);
+      loadedCount += itemsToLoad.length;
+      updateProgress(); 
+    }
+
+    if (loadedCount >= totalItems) {
+      if (loadMoreBtn) loadMoreBtn.style.display = 'none';
+    }
+  };
+
+  const handleAccordionClick = (event) => {
+
+      const questionButton = event.target.closest('.faq-question');
+      if (!questionButton) return;
+      const faqItem = questionButton.closest('.faq-item');
+      if (!faqItem) return;
+      const isOpen = faqItem.classList.contains('open');
+      faqList.querySelectorAll('.faq-item.open').forEach(openItem => {
+        if (openItem !== faqItem) {
+          openItem.classList.remove('open');
+        }
+      });
+      if (!isOpen) {
+        faqItem.classList.add('open');
+      } else {
+        faqItem.classList.remove('open');
+      }
+  };
+
+
+  // === Initialization ===
+  if (loadMoreBtn) {
+    loadMoreBtn.addEventListener('click', loadMoreItems);
+  }
+  if (faqList) {
+    faqList.addEventListener('click', handleAccordionClick);
+  }
+
+
+  loadMoreItems();
+
+  if (loadedCount === 0) {
+       updateProgress();
+  }
+
 </script>

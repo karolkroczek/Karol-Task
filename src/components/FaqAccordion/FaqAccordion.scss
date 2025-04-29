@@ -1,119 +1,227 @@
+$dark-background: #1a1a1a;
+$bubble-background: #0a635a;
+$progress-bar-fill-color: #4caf50;
+$progress-bar-track-color: rgba(255, 255, 255, 0.2);
+$text-color: #ffffff;
+
 .faq-accordion {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 1rem;
-    list-style: none;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 1rem;
+  list-style: none;
+  position: relative;
+
+  .faq-item {
+    cursor: pointer;
     position: relative;
-    .faq-item {
-      position: relative;
-      counter-increment: li-counter;
-      padding-left: 2.5rem;
-      gap: 1rem;
-      flex-direction: column;
+    counter-increment: li-counter;
+    padding-left: 2.5rem;
+    gap: 1rem;
+    flex-direction: column;
 
-      .faq-question {
-        background: none;
-        border: none;
-        width: 100%;
-        text-align: left;
-        font-size: 1.25rem;
-        padding: 1rem 0;
-        cursor: pointer;
-        color: #F0F7F7;
-        position: relative;
+    .faq-question {
+    background: none;
+    border: none;
+    width: 100%;
+    text-align: left;
+    font-size: 1.25rem;
+    padding: 1rem 0;
+    cursor: pointer;
+    color: #F0F7F7;
+    position: relative;
 
-        &::before {
-          content: counter(li-counter, decimal-leading-zero);
-          left: 0;
-          color: #C6CDCC;
-          margin-right: 5rem;
-        }
+    &::before {
+      content: counter(li-counter, decimal-leading-zero);
+      left: 0;
+      color: #C6CDCC;
+      margin-right: 5rem;
+    }
 
-      }
-      .faq-answer {
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.1s ease, opacity 0.1s ease;
-        opacity: 0;
-        padding: 0;
-        padding-left: 2.5rem;
-        font-size: 1rem;
-      }
+    }
+    .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    padding: 0;
+    padding-left: 2.5rem;
+    font-size: 1rem;
+    }
   
-      &.open .faq-answer {
-        max-height: 500px;
-        opacity: 1;
-        padding-bottom: 1rem;
-      }
-      &::before {
-        content: '';
-        background: linear-gradient(90deg, #2DD282 30%, #90F4E8 30%,#C6CDCC 20%); 
-
-        background-position: 100% 50%;
-        background-size: 200% 100%;
-        height: 2px;
-        width: 100%;
-        position: absolute;
-        left: 0;
-        background-repeat: no-repeat;
-        transition: .3s ease-out;
-        bottom: 0;
+    &.open .faq-answer {
+    max-height: 500px;
+    opacity: 1;
+    padding-bottom: 1rem;
     }
-    &:hover{
-      &::before {
-        opacity: 0.5;
-      }
-    }
-    &.open {
-      &::before {
-      background:  linear-gradient(90deg, #2DD282 50%, #90F4E8 50%,#C6CDCC 0%); 
-      background-size: 200% 100%;
-      background-position: 0% 50%;
-      transition: 1.5s ease-out
-    }
+    &::before {
+    content: '';
+    background: linear-gradient(90deg, #2DD282 30%, #90F4E8 30%,#C6CDCC 20%); 
+    background-position: 100% 50%;
+    background-size: 200% 100%;
+    height: 2px;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    background-repeat: no-repeat;
+    transition: .3s ease-out;
+    bottom: 0;
+  }
+  &:hover{
+    &::before {
+    opacity: 0.7;
     }
   }
-}
+  &.open {
+    &::before {
+    background:  linear-gradient(90deg, #2DD282 50%, #90F4E8 50%,#C6CDCC 0%); 
+    background-size: 200% 100%;
+    background-position: 0% 50%;
+    transition: 1.5s ease-out;
+    opacity: 1;
+    }
+  }
+  }
+  }
+  .load-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  padding: 25px 15px;
+  color: $text-color;
+  margin-top: 1.5rem;
+  position: relative;
+  }
   
+  .progress-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%; 
+  max-width: 250px; 
+  gap: 8px; 
+  }
+  
+  .progress-bubble {
+  background-color: $bubble-background;
+  color: $text-color;
+  padding: 6px 18px;
+  border-radius: 20px;
+  font-size: 0.95em;
+  font-weight: 600;
+  line-height: 1.4;
+  position: relative;
+  margin-bottom: 8px;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -7px; 
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent; 
+    border-right: 8px solid transparent; 
+    border-top: 8px solid $bubble-background; 
+  }
+  
+  span {
+    display: inline-block; 
+    background-color: transparent;
+  }
+  }
+  
+  .progress-bar-container {
+  width: 100%;
+  height: 4px;
+  background-color: $progress-bar-track-color;
+  border-radius: 2px;
+  overflow: hidden;
+  }
+  
+  .progress-bar-fill {
+  height: 100%;
+  width: 0%;
+  background-color: $progress-bar-fill-color;
+  border-radius: 2px;
+  transition: width 0.4s ease-in-out;
+  }
+  
+  .load-btn {
+  background-color: transparent;
+  border: none;
+  color: $text-color;
+  padding: 10px 0;
+  font-size: 1.1em;
+  font-weight: 500;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: opacity 0.3s ease;
+
+  &::after {
+    content: '';
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background-image: url('../../assets/arrowIcon.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+  
+  &:hover {
+    opacity: 0.8;
+  }
+  
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  }
 
   @media (max-width: 640px) {
-    .faq-accordion {
-      padding: 0.5rem;
+  .faq-accordion {
+    padding: 0.5rem;
   
-      .faq-question {
-        font-size: 1rem;
-      }
-  
-      .faq-answer {
-        font-size: 0.9rem;
-      }
+    .faq-question {
+    font-size: 1rem;
     }
+  
+    .faq-answer {
+    font-size: 0.9rem;
+    }
+  }
   }
   
   @media (min-width: 768px) {
-    .faq-accordion {
-      max-width: 700px;
+  .faq-accordion {
+    max-width: 700px;
   
-      .faq-question {
-        font-size: 1.4rem;
-      }
-  
-      .faq-answer {
-        font-size: 1.1rem;
-      }
+    .faq-question {
+    font-size: 1.4rem;
     }
+  
+    .faq-answer {
+    font-size: 1.1rem;
+    }
+  }
   }
   
   @media (min-width: 1024px) {
-    .faq-accordion {
-      max-width: 100%;
-  
-      .faq-question {
-        font-size: 1.5rem;
-      }
-  
-      .faq-answer {
-        font-size: 1.2rem;
-      }
+    .faq-container{
+      padding: 2rem;
     }
+  .faq-accordion {
+    max-width: 100%;
+  
+    .faq-question {
+    font-size: 1.5rem;
+    }
+  
+    .faq-answer {
+    font-size: 1.2rem;
+    }
+  }
   }
