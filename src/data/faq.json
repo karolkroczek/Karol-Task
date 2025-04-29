@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "question": "Ile kosztuje utworzenie strony internetowej?",
+    "answer": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+  },
+  {
+    "id": 2,
+    "question": "Jakie formy rozliczenia oferujecie?",
+    "answer": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+  },
+  {
+    "id": 3,
+    "question": "Ile czasu potrzebujecie, by stworzyć stronę internetową od zera?",
+    "answer": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+  },
+  {
+    "id": 4,
+    "question": "Jakich informacji potrzebujecie, by utworzyć dla mnie stronę internetową?",
+    "answer": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+  },
+  {
+    "id": 5,
+    "question": "Po co mi strona internetowa?",
+    "answer": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+  },
+  {
+    "id": 6,
+    "question": "Jak wygląda współpraca z Kryptonum?",
+    "answer": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+  },
+  {
+    "id": 7,
+    "question": "Czy tworzycie logo?",
+    "answer": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+  },
+  {
+    "id": 8,
+    "question": "Zajmujecie się optymalizacją SEO?",
+    "answer": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+  },
+  {
+    "id": 9,
+    "question": "Czy przygotowujecie treści na strony internetowe, które tworzycie?",
+    "answer": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+  },
+  {
+    "id": 10,
+    "question": "Czy tworzycie strony internetowe na Wordpressie?",
+    "answer": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+  },
+  {
+    "id": 11,
+    "question": "Czy zajmujecie się tworzeniem aplikacji desktopowych?",
+    "answer": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+  },
+  {
+    "id": 12,
+    "question": "Czy zajmujecie się tworzeniem aplikacji webowych?",
+    "answer": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+  }
+]

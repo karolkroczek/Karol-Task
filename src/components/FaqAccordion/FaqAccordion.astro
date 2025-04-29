@@ -1,0 +1,34 @@
+---
+import faq from '../../data/faq.json'; 
+import './FaqAccordion.scss';
+---
+
+<div class="faq-accordion">
+  {faq.map((item, index) => (
+    <div class="faq-item" data-index={index}>
+      <button class="faq-question">
+        {item.question}
+      </button>
+      <p class="faq-answer">
+        {item.answer}
+      </p>
+    </div>
+  ))}
+</div>
+
+<script type="module">
+  const faqItems = document.querySelectorAll('.faq-item');
+
+  faqItems.forEach(item => {
+    const question = item.querySelector('.faq-question');
+    const answer = item.querySelector('.faq-answer');
+
+    question.addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      faqItems.forEach(i => i.classList.remove('open')); 
+      if (!isOpen) {
+        item.classList.add('open');
+      }
+    });
+  });
+</script>
