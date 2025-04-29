@@ -5,13 +5,11 @@
     list-style: none;
     position: relative;
     .faq-item {
-      border-bottom: 1px solid #C6CDCC;
+      position: relative;
       counter-increment: li-counter;
       padding-left: 2.5rem;
       gap: 1rem;
       flex-direction: column;
-
-
 
       .faq-question {
         background: none;
@@ -22,6 +20,7 @@
         padding: 1rem 0;
         cursor: pointer;
         color: #F0F7F7;
+        position: relative;
 
         &::before {
           content: counter(li-counter, decimal-leading-zero);
@@ -31,24 +30,50 @@
         }
 
       }
-      
-  
       .faq-answer {
         max-height: 0;
         overflow: hidden;
         transition: max-height 0.1s ease, opacity 0.1s ease;
         opacity: 0;
         padding: 0;
+        padding-left: 2.5rem;
         font-size: 1rem;
       }
   
       &.open .faq-answer {
         max-height: 500px;
         opacity: 1;
-        padding: 0.5rem 0 1rem 0;
+        padding-bottom: 1rem;
+      }
+      &::before {
+        content: '';
+        background: linear-gradient(90deg, #2DD282 30%, #90F4E8 30%,#C6CDCC 20%); 
+
+        background-position: 100% 50%;
+        background-size: 200% 100%;
+        height: 2px;
+        width: 100%;
+        position: absolute;
+        left: 0;
+        background-repeat: no-repeat;
+        transition: .3s ease-out;
+        bottom: 0;
+    }
+    &:hover{
+      &::before {
+        opacity: 0.5;
       }
     }
+    &.open {
+      &::before {
+      background:  linear-gradient(90deg, #2DD282 50%, #90F4E8 50%,#C6CDCC 0%); 
+      background-size: 200% 100%;
+      background-position: 0% 50%;
+      transition: 1.5s ease-out
+    }
+    }
   }
+}
   
 
   @media (max-width: 640px) {
