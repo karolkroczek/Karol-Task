@@ -5,14 +5,14 @@ import './FaqAccordion.scss';
 
 <div class="faq-accordion">
   {faq.map((item, index) => (
-    <div class="faq-item" data-index={index}>
+    <li class="faq-item" data-index={index}>
       <button class="faq-question">
         {item.question}
       </button>
       <p class="faq-answer">
         {item.answer}
       </p>
-    </div>
+    </li>
   ))}
 </div>
 

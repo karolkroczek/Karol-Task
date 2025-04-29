@@ -2,10 +2,19 @@
     max-width: 600px;
     margin: 0 auto;
     padding: 1rem;
-  
+    list-style: none;
+    position: relative;
     .faq-item {
       border-bottom: 1px solid #C6CDCC;
-  
+      counter-increment: li-counter;
+      display: flex;
+      align-items: flex-start;
+      padding-left: 2.5rem;
+      gap: 1rem;
+      flex-direction: column;
+
+
+
       .faq-question {
         background: none;
         border: none;
@@ -15,7 +24,17 @@
         padding: 1rem 0;
         cursor: pointer;
         color: #F0F7F7;
+
+
+        &::before {
+          content: counter(li-counter, decimal-leading-zero) ".";
+          left: 0;
+          color: #C6CDCC;
+          margin-right: 5rem;
+        }
+
       }
+      
   
       .faq-answer {
         max-height: 0;
