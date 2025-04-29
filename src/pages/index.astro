@@ -1,5 +1,6 @@
 ---
 import FaqAccordion from '../components/FaqAccordion/FaqAccordion.astro';
+import "./index.scss";
 ---
 
 <html lang="pl">
@@ -11,37 +12,7 @@ import FaqAccordion from '../components/FaqAccordion/FaqAccordion.astro';
       </style>
   </head>
   <body>
-    <h1 class="main-header">Pytaj, jakby jutra miało nie być. Odpowiemy!</h1>
+    <h1 class="main-header"><span>Pytaj</span>, jakby jutra miało nie być. Odpowiemy!</h1>
     <FaqAccordion />
   </body>
-  <style>
-    *{
-      font-family: 'Poppins', sans-serif;
-      box-sizing: border-box;
-      margin: 0;
-      background-color: black;
-      color: #F0F7F7;font-family: Poppins;
-    font-weight: 400;
-    line-height: 160%;
-    letter-spacing: -2.25%;
-    font-variant-numeric-figure: oldstyle-nums;
-    font-variant-numeric-spacing: proportional-nums;
-    }
-    .main-header {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2rem;
-      margin-bottom: 2rem;
-    }
-    .main-header::before {
-      content: '';
-      display: inline-block;
-      width: 1.8rem;
-      height: 2rem;
-      background: url('../assets/headingIcon.svg') no-repeat center;
-      background-size: contain;
-      margin-right: 1rem;
-    }
-    </style>
 </html>
