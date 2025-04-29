@@ -53,10 +53,12 @@ $progress-bar-track-color: $white-translucent;
       cursor: pointer;
       color: $text-light;
       position: relative;
+      display: flex;
 
       .question-text {
         flex-grow: 1;
         margin-right: 15px;
+        font-size: 1.3rem;
       }
 
       &::before {
@@ -72,7 +74,7 @@ $progress-bar-track-color: $white-translucent;
       overflow: hidden;
       opacity: 0;
       padding: 0;
-      padding-left: 2.5rem;
+      padding-left: 6.5rem;
       font-size: 1rem;
     }
 
@@ -143,7 +145,7 @@ $progress-bar-track-color: $white-translucent;
 
       &::before {
         background: linear-gradient(90deg, $gradient-start 50%, $gradient-middle 50%, $gradient-end 0%);
-        background-size: 200% 100%;
+        background-size: 210% 100%;
         background-position: 0% 50%;
         transition: 1.5s ease-out;
         opacity: 1;
